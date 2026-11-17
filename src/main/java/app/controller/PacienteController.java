@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.entities.Paciente;
 import app.service.IPacienteService;
+import dto.ApiResponseSuccessDto;
 import jakarta.websocket.server.PathParam;
 
 // API REST Representational State Transfer,
@@ -44,7 +45,44 @@ public class PacienteController {
 		
 		return new ResponseEntity<>(pacienteService.buscarPorNombre(name), HttpStatus.OK);
 	}
-
+	
+	
+    // Listar todos los pacientes
+	@GetMapping
+	
+		   //como va a ser el objeto de respuesta                 nombre del metodo   parametros del metodo 
+	public ResponseEntity<ApiResponseSuccessDto<List<Paciente>>>  getAllPacientes     () {
+		List<Paciente> pacientes = pacienteService.findAll(); // --> Trae la lista de todos los pacientes
+		
+		ApiResponseSuccessDto<List<Paciente>> resp = new ApiResponseSuccessDto<>(); //Creamos el objeto de respuesta
+		resp.setSuccess(true);
+		resp.setData(pacientes);
+		
+		//Condicional ternario
+		//pregunta si la lista esta vacia, si esta vacia guarda el mensaje "No hay pacientes registrados" y si NO esta vacia
+		//guarda el mensaje "Lista de pacientes"
+		resp.setMessage(pacientes.isEmpty() ? "No hay pacientes registrados" : "Lista de pacientes");
+		
+		return ResponseEntity.ok(resp);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    // Buscar paciente por ID
+	@GetMapping("/{id}")
+	public ResponseEntity< ApiResponseSuccessDto<   Paciente  >   >  getPacientesById() {
+		
+		return null;
+	}
 	
 	
 }

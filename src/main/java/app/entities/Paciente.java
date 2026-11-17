@@ -20,6 +20,7 @@ public class Paciente extends BaseEntity {
 	private String email; //255 caracters como maximo
 	private LocalDate fechaNacimiento; //255 caracters como maximo
 	private String telefono; //255 caracters como maximo
+	
 	private boolean active;
 	
 	

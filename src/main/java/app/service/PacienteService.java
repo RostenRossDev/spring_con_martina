@@ -93,7 +93,7 @@ public class PacienteService  implements IPacienteService {
 		// TODO Auto-generated method stub
 		
 		//Primer paso busco toda la lista
-		List<Paciente> pacientes = repository.findAll();
+		List<Paciente> pacientes = repository.findAll(); // le pide al repositorio que el traiga todos los 
 		
 
 		//Segundo paso filtro los pacientes que tienen el nombre que busco 

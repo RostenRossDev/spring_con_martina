@@ -21,6 +21,5 @@ public interface IPacienteService { //en las interfaces van las definiciones de 
 	    List<Paciente> findActivos();
 	    List<Paciente> findInactivos();
 	    
-	    
 	    List<Paciente> buscarPorNombre(String nombre);
 }

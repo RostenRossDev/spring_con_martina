@@ -1,2 +1,2 @@
-insert into paciente (nombre, apellido, dni, email, fecha_nacimiento, telefono, active) values ('Martina','Ferreira','123451234','martina@martina','2000-12-09','123123',true);
 insert into paciente (nombre, apellido, dni, email, fecha_nacimiento, telefono, active) values ('Nestor','Costantini','123451234','Nestor@Nestor','1991-04-16','123123',true);
+insert into paciente (nombre, apellido, dni, email, fecha_nacimiento, telefono, active) values ('Martina','Ferreira','123451234','martina@martina','2000-12-09','123123',true);
