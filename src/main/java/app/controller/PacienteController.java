@@ -16,6 +16,7 @@ import app.entities.Paciente;
 import app.service.IPacienteService;
 import jakarta.websocket.server.PathParam;
 
+// API REST Representational State Transfer,
 @RestController // Combierte la clase en un controlador REST -> Response TEXTO PLANO con formato
 				// JSON
 //@Controller // -> Convierte la clase en un controlador del tipo MVC (modelo vista controlador) -> Responde una pagina HTML
@@ -34,18 +35,16 @@ public class PacienteController {
 	@Autowired
 	IPacienteService pacienteService;
 	
+	
+	//ENDPOINT
 	@GetMapping("/byNombre")
 	public ResponseEntity<?> pacientesPorNombre(@RequestParam(value = "nombre", required = false) String name) { // GET
 		// www.las-tres-marias.com/paciente/byNombre?nombre=Martina
 		//	       12858.5878.455:8080    /paciente/byNombre?nombre=Martina
 		
-	
 		return new ResponseEntity<>(pacienteService.buscarPorNombre(name), HttpStatus.OK);
 	}
 
-	// delete
-
-	// crear
-
-	// actualizar
+	
+	
 }
