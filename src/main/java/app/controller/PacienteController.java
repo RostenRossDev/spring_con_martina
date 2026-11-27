@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.entities.Paciente;
 import app.service.IPacienteService;
-import app.service.PacienteService;
+import app.service.impl.PacienteService;
 import dto.ApiResponseSuccessDto;
 import jakarta.websocket.server.PathParam;
 

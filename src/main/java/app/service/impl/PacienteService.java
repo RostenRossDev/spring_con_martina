@@ -1,4 +1,4 @@
-package app.service;
+package app.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entities.Paciente;
+import app.exception.ResourceNotFoundException;
 import app.repository.PacienteRepository;
+import app.service.IPacienteService;
 import dto.DtoPaciente;
 import mapper.PacienteMapper;
 
@@ -16,48 +18,55 @@ public class PacienteService  implements IPacienteService {
 
 	@Autowired
 	private PacienteRepository repository;
-
+	
 	@Override
 	public List<Paciente> findAll() {
-		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
 
 	@Override
 	public List<Paciente> findAllOrder() {
-		// TODO Auto-generated method stub
-		return null; //repository.findByApellidoAscNombreAsc("");
+		return repository.findByOrderByApellidoAscNombreAsc();
 	}
 
 	@Override
 	public List<Paciente> findByDni(String dni) {
-		// TODO Auto-generated method stub
-		
 		return repository.findByDni(dni);
 	}
 
 	@Override
 	public List<Paciente> findByDomainEmail(String domain) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return repository.findByEmailEndingWith(domain);
+	}  
+
 
 	@Override
 	public Long countBy() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.countBy();
 	}
 
 	@Override
-	public Paciente create(Paciente paciente) throws IllegalArgumentException {
+	public Paciente create(Paciente paciente) {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.save(paciente);
 	}
 
 	@Override
 	public Paciente update(Long id, Paciente paciente) {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		//Busca el paciente si existe
+		Paciente existente = repository.findById(id)
+	                .orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado con id " + id));
+		
+		 // actualizar campos
+        existente.setNombre(paciente.getNombre());
+        existente.setApellido(paciente.getApellido());
+        existente.setDni(paciente.getDni());
+        existente.setEmail(paciente.getEmail());
+        existente.setFechaNacimiento(paciente.getFechaNacimiento());
+        existente.setTelefono(paciente.getTelefono());
+   
+		return repository.save(existente);
 	}
 
 	@Override
@@ -90,32 +99,7 @@ public class PacienteService  implements IPacienteService {
 		return null;
 	}
 
-	@Override
-	public List<DtoPaciente> buscarPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		
-		//Primer paso busco toda la lista
-		List<Paciente> pacientes = repository.findAll(); // le pide al repositorio que el traiga todos los 
-		
-
-		//Segundo paso filtro los pacientes que tienen el nombre que busco 
-		List<Paciente> pacientesFiltrados = new ArrayList<>();
-		
-		for(Paciente paciente: pacientes) {
-			if(paciente.getNombre().equalsIgnoreCase(nombre)) {
-				pacientesFiltrados.add(paciente);
-			}
-		}
-		
-		List<DtoPaciente> dtoPacientes = new ArrayList<>();
-		
-		for(Paciente paciente: pacientesFiltrados) {	
-			dtoPacientes.add(PacienteMapper.toDto(paciente));
-		}
-		
-		System.out.println(pacientesFiltrados);
-		return dtoPacientes;
-	}
+	
 
 
 
