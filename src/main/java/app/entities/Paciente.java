@@ -11,16 +11,12 @@ import jakarta.persistence.Id;
 @Entity
 public class Paciente extends BaseEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String nombre;  //255 caracters como maximo
 	private String apellido; //255 caracters como maximo
 	private String dni; //255 caracters como maximo
 	private String email; //255 caracters como maximo
 	private LocalDate fechaNacimiento; //255 caracters como maximo
 	private String telefono; //255 caracters como maximo
-	
 	private boolean active;
 	
 	
@@ -65,14 +61,7 @@ public class Paciente extends BaseEntity {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-	@Override
-	public String toString() {
-		return "Paciente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", email="
-				+ email + ", fechaNacimiento=" + fechaNacimiento + ", telefono=" + telefono + ", active=" + active
-				+ "]";
-	}
-	
+	}	
 	
 	
 }

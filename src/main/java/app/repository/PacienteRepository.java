@@ -14,10 +14,6 @@ import app.entities.Paciente;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 	
-	//List<Paciente> findByApellidoAscNombreAsc(String apellido); // select * from Paciente order by apellido, nombre asc
-	List<Paciente> findByDni(String dni);
-	List<Paciente> findByEmailEndingWith(String domain);
-	List<Paciente> findByActiveTrue();
-	List<Paciente> findByActiveFalse();
-	Long countBy();
+	
+
 }
