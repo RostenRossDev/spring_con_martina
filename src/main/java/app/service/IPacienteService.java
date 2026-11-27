@@ -3,6 +3,7 @@ package app.service;
 import java.util.List;
 
 import app.entities.Paciente;
+import dto.DtoPaciente;
 
 public interface IPacienteService { //en las interfaces van las definiciones de un metodo
 	
@@ -21,5 +22,5 @@ public interface IPacienteService { //en las interfaces van las definiciones de 
 	    List<Paciente> findActivos();
 	    List<Paciente> findInactivos();
 	    
-	    List<Paciente> buscarPorNombre(String nombre);
+	    List<DtoPaciente> buscarPorNombre(String nombre);
 }

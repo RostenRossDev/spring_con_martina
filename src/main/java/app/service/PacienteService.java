@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import app.entities.Paciente;
 import app.repository.PacienteRepository;
+import dto.DtoPaciente;
+import mapper.PacienteMapper;
 
 @Service
 public class PacienteService  implements IPacienteService {
@@ -89,7 +91,7 @@ public class PacienteService  implements IPacienteService {
 	}
 
 	@Override
-	public List<Paciente> buscarPorNombre(String nombre) {
+	public List<DtoPaciente> buscarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
 		
 		//Primer paso busco toda la lista
@@ -105,9 +107,14 @@ public class PacienteService  implements IPacienteService {
 			}
 		}
 		
+		List<DtoPaciente> dtoPacientes = new ArrayList<>();
+		
+		for(Paciente paciente: pacientesFiltrados) {	
+			dtoPacientes.add(PacienteMapper.toDto(paciente));
+		}
 		
 		System.out.println(pacientesFiltrados);
-		return pacientesFiltrados;
+		return dtoPacientes;
 	}
 
 

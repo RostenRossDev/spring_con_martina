@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entities.Paciente;
 import app.service.IPacienteService;
+import app.service.PacienteService;
 import dto.ApiResponseSuccessDto;
 import jakarta.websocket.server.PathParam;
 
@@ -36,13 +38,12 @@ public class PacienteController {
 	@Autowired
 	IPacienteService pacienteService;
 	
-	
+
 	//ENDPOINT
 	@GetMapping("/byNombre")
 	public ResponseEntity<?> pacientesPorNombre(@RequestParam(value = "nombre", required = false) String name) { // GET
 		// www.las-tres-marias.com/paciente/byNombre?nombre=Martina
 		//	       12858.5878.455:8080    /paciente/byNombre?nombre=Martina
-		
 		return new ResponseEntity<>(pacienteService.buscarPorNombre(name), HttpStatus.OK);
 	}
 	
@@ -50,7 +51,7 @@ public class PacienteController {
     // Listar todos los pacientes
 	@GetMapping
 	
-		   //como va a ser el objeto de respuesta                 nombre del metodo   parametros del metodo 
+		   //como va a ser el objeto de respuesta                 nombre del metodo   para 
 	public ResponseEntity<ApiResponseSuccessDto<List<Paciente>>>  getAllPacientes     () {
 		List<Paciente> pacientes = pacienteService.findAll(); // --> Trae la lista de todos los pacientes
 		
